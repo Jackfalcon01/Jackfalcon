@@ -2,6 +2,7 @@ import pygame
 from pygame.locals import *
 import sys
 from time import sleep
+
 direction = "L"
 
 # Colours
@@ -9,7 +10,7 @@ SnakeColor = (250, 250, 255)
 BGColor = (50, 50, 50)
 FoodColor = (255, 60, 60)
 
-#global Variables
+# global Variables
 x = 15
 y = 15
 
@@ -18,25 +19,40 @@ windowHeight, windowWidth = 600, 600
 window = pygame.display.set_mode((windowHeight, windowWidth))
 pygame.display.set_caption("SnakeGame")
 
+
 def drawRect(Color, Coord):  # Draw Function
     xCoord = Coord[0] * 20
     yCoord = Coord[1] * 20
     pygame.draw.rect(window, Color, (yCoord, xCoord, 20, 20))
 
+
 def refreshScreen():
     window.fill(BGColor)
+
 
 def gameLoop():
     sleep(0.1)
     refreshScreen()
     global direction
     global x, y
-    
-    #U = up, D = Down , L=Left, R=right
-    
+
+    # U = up, D = Down , L=Left, R=right
+
     if direction == "U":
+        y += 1
+        drawRect(SnakeColor, (x, y))
+
+    if direction == "D":
+        y -= 1
+        drawrect(SnakeColor, (x, y))
+
+    if direction == "R":
+        x += 1
+        drawRect(SnakeColor, (x, y))
+
+    if direction == "L":
         x -= 1
-    drawRect(SnakeColor, (x, y))
+        drawRect(SnakeColor, (x, y))
 
 while True:
     for event in pygame.event.get():
@@ -58,4 +74,3 @@ while True:
                     direction = "R"
     gameLoop()
     pygame.display.update()
-        
